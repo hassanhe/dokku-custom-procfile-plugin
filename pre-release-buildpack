@@ -6,10 +6,10 @@ source "$PLUGIN_CORE_AVAILABLE_PATH/common/functions"
 APP="$1"; IMAGE_TAG="$2"; IMAGE=$(get_app_image_name $APP $IMAGE_TAG)
 verify_app_name "$APP"
 
-dokku_log_info1 "Custom Procfile plugin"
-
 # get procfile env var
 PROCFILE=$(dokku config:get $APP PROCFILE)
+
+if [ $PROCFILE ]; then
 
 dokku_log_info1 "PROCFILE set to $PROCFILE"
 
@@ -20,7 +20,13 @@ EOF
 )
 
 dokku_log_info1 "Customizing Procfile"
+
 CID=$(docker run "${DOCKER_COMMIT_LABEL_ARGS[@]}" -d $IMAGE /bin/bash -c "$CMD")
 test $(docker wait $CID) -eq 0
+
 docker commit "${DOCKER_COMMIT_LABEL_ARGS[@]}" $CID $IMAGE > /dev/null
+
 dokku_log_info1 "New Procfile ready"
+
+fi
+
