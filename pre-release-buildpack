@@ -9,7 +9,7 @@ verify_app_name "$APP"
 # get procfile env var
 PROCFILE=$(dokku config:get $APP PROCFILE)
 
-if [ $PROCFILE ]; then
+if [ -n $PROCFILE ]; then
 
 dokku_log_info1 "PROCFILE set to $PROCFILE"
 
