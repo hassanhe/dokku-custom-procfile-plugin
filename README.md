@@ -1,10 +1,13 @@
 # DOKKU custom Procfile plugin
+This plugin enables to define `Procfile` proccess config in `PROCFILE` environment variable, this helps seperating deploy environment config out of sourcecode reporsitory, thus respecting [config factor](https://12factor.net/config).
 
-This plugin enables to have custom Procfile for the same repository
+## Installation
+```bash
+dokku plugin:install https://github.com/hassanhe/dokku-custom-procfile-plugin.git
+```
 
-This problem appears when you have differents "tasks" that you need to run in differents apps.
-
-For instance, you want to run your web server in a different app from the celery tasks
-
-# Usage
-set a environment var for a given app PROCFILE='web: gunicorn -b "0.0.0.0:\$PORT" -w 4 manage:app'
+## Usage
+set a environment var for a given app
+```bash
+dokku config:set <app> PROCFILE='web: npm start' 
+```
