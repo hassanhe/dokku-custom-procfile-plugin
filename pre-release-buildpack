@@ -7,7 +7,7 @@ APP="$1"; IMAGE_TAG="$2"; IMAGE=$(get_app_image_name $APP $IMAGE_TAG)
 verify_app_name "$APP"
 
 # get procfile env var
-PROCFILE=$(dokku config:get $APP PROCFILE)
+PROCFILE=$(dokku config:get $APP PROCFILE);
 
 if [ -n "$PROCFILE" ]; then
 
