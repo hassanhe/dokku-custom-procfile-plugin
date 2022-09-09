@@ -11,13 +11,9 @@ dokku_log_verbose_quiet "$APP PROCFILE=$(dokku config:get $APP PROCFILE)"
 dokku_log_verbose_quiet "0"
 
 # get procfile env var
-PROCFILE=$(dokku config:get $APP PROCFILE);
-
-dokku_log_verbose_quiet "1"
+PROCFILE=$(dokku config:get $APP PROCFILE)
 
 dokku_log_verbose_quiet "PROCFILE=$PROCFILE"
-
-dokku_log_verbose_quiet "2"
 
 if [ -n "$PROCFILE" ]; then
 
