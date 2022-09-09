@@ -9,6 +9,8 @@ verify_app_name "$APP"
 # get procfile env var
 PROCFILE=$(dokku config:get $APP PROCFILE);
 
+dokku_log_verbose_quiet "PROCFILE=$PROCFILE"
+
 if [ -n "$PROCFILE" ]; then
 
 dokku_log_info1 "Setting Procfile from config"
