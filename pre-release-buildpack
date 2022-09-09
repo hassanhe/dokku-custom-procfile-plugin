@@ -7,13 +7,11 @@ APP="$1"; IMAGE_TAG="$2"; IMAGE=$(get_app_image_name $APP $IMAGE_TAG)
 verify_app_name "$APP"
 
 # get procfile env var
-PROCFILE=`dokku config:get $APP PROCFILE`
-
-dokku_log_verbose_quiet "PROCFILE=$PROCFILE"
+PROCFILE=`dokku config:get $APP PROCFILE || true`
 
 if [ -n "$PROCFILE" ]; then
 
-dokku_log_info1 "Setting Procfile from config"
+dokku_log_info1 "Setting Procfile from config PROCFILE"
 
 dokku_log_verbose_quiet "$PROCFILE"
 
