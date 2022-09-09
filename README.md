@@ -9,5 +9,14 @@ dokku plugin:install https://github.com/hassanhe/dokku-custom-procfile-plugin.gi
 ## Usage
 set a environment var for a given app
 ```bash
-dokku config:set <app> PROCFILE='web: npm start' 
+dokku config:set <app> PROCFILE='web: <command>' 
+```
+### Multiline `Procfile`
+use `echo -e` with `\n` for newlines like so
+```bash
+dokku config:set <app> PROCFILE="$(echo -e 'web: <command>\nrelease: <command>')"
+```
+## Uninstall
+```bash
+dokku plugin:uninstall custom-procfile-plugin
 ```

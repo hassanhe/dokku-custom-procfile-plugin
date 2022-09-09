@@ -11,7 +11,7 @@ PROCFILE=`dokku config:get $APP PROCFILE || true`
 
 if [ -n "$PROCFILE" ]; then
 
-dokku_log_info1 "Setting Procfile from config PROCFILE"
+dokku_log_info1 "Setting Procfile from config PROCFILE "
 
 dokku_log_verbose_quiet "$PROCFILE"
 
@@ -25,8 +25,6 @@ CID=$(docker run "${DOCKER_COMMIT_LABEL_ARGS[@]}" -d $IMAGE /bin/bash -c "$CMD")
 test $(docker wait $CID) -eq 0
 
 docker commit "${DOCKER_COMMIT_LABEL_ARGS[@]}" $CID $IMAGE > /dev/null
-
-dokku_log_verbose_quiet "Procfile ready"
 
 fi
 
